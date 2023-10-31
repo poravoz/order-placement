@@ -44,9 +44,8 @@ h2 {
 }
 
 .form-group select {
-    appearance: none; /* Убирает стандартные стили для select в некоторых браузерах */
-    padding-right: 40px; /* Добавляет місце для стрілки */
-    background-image: url('../images/arrow.svg'); /* Додає замість стрілки свою */
+    appearance: none; 
+    padding-right: 40px; 
     background-repeat: no-repeat;
     background-position: right 10px center;
 }
