@@ -69,8 +69,8 @@ window.onload = function() {
 
         // Створення об'єкта з даними
         var data = {
-            firstName: firstName,
-            lastName: lastName,
+            name: firstName,
+            surname: lastName,
             middleName: middleName,
             phone: phone,
             email: email,
