@@ -1,48 +1,47 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { OrderPlacement } from './interface/order-placement.interface';
 import { UpdateOrderPlacementDto } from './dto/update-order-placement.dto';
 import { CreateOrderPlacementDto } from './dto/create-order-placement.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import OrderPlacementEntity from './entities/order-placement.entity';
 
 @Injectable()
 export default class OrderPlacementService {
-    private lastOrderPlacementId = 0;
-    private orderPlacements: OrderPlacement[] = [];
+    constructor(
+        @InjectRepository(OrderPlacementEntity)
+        private orderPlacementsRepository: Repository<OrderPlacementEntity>
+    ) {}
 
-    getAllOrderPlacements() {
-        return this.orderPlacements;
+    async getAllOrderPlacements() {
+        return await this.orderPlacementsRepository.find();
     }
 
-    getOrderPlacementById(id: number) {
-        const orderPlacement = this.orderPlacements.find(orderPlacement => orderPlacement.id === id);
+    async getOrderPlacementById(id: number) {
+        const orderPlacement = await this.orderPlacementsRepository.findOne({where: {id}});
         if(orderPlacement) {
             return orderPlacement;
         }
         throw new HttpException('OrderPlacement not found', HttpStatus.NOT_FOUND);
     }
 
-    replaceOrderPlacement(id: number, orderPlacement: UpdateOrderPlacementDto) {
-        const orderPlacementIndex = this.orderPlacements.findIndex(orderPlacement => orderPlacement.id === id);
-        if(orderPlacementIndex > -1) {
-            this.orderPlacements[orderPlacementIndex] = orderPlacement;
-            return orderPlacement;
+    async createOrderPlacement(orderPlacement: CreateOrderPlacementDto) {
+        const newOrderPlacement = await this.orderPlacementsRepository.create(orderPlacement) 
+        await this.orderPlacementsRepository.save(newOrderPlacement);
+        return newOrderPlacement;
+    }
+
+    async replaceOrderPlacement(id: number, orderPlacement: UpdateOrderPlacementDto) {
+        await this.orderPlacementsRepository.update(id, orderPlacement);
+        const updateOrderPlacement = await this.orderPlacementsRepository.findOne({where: {id}});
+        if(updateOrderPlacement) {
+            return updateOrderPlacement;
         }
         throw new HttpException('OrderPlacement not found', HttpStatus.NOT_FOUND);
     }
 
-    createOrderPlacement(orderPlacement: CreateOrderPlacementDto) {
-        const newOrderPlacement = {
-            id: ++this.lastOrderPlacementId,
-            ...orderPlacement
-        }
-        this.orderPlacements.push(newOrderPlacement);
-        return newOrderPlacement;
-    }
-
-    deleteOrderPlacement(id: number) {
-        const orderPlacementIndex = this.orderPlacements.findIndex(orderPlacement => orderPlacement.id === id);
-        if(orderPlacementIndex > -1) {
-            this.orderPlacements.splice(orderPlacementIndex, 1);
-        } else {
+    async deleteOrderPlacement(id: number) {
+        const deleteOrderPlacement = await this.orderPlacementsRepository.delete(id);
+        if(!deleteOrderPlacement) {
             throw new HttpException('OrderPlacement not found', HttpStatus.NOT_FOUND);
         }
     }
