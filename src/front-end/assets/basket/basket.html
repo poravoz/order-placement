@@ -14,31 +14,32 @@
         <div class="cart-items" id="cart-items"></div>
         <button class="clear-cart" id="clear-cart">Очистити</button>
 
+        <form>
         <div class="form-container">
             <h2>Оформити замовлення</h2>
             <div class="form-group">
                 <label for="first-name">Ім'я</label>
-                <input type="text" id="first-name" name="first-name">
+                <input type="text" id="first-name" name="first-name" required>
             </div>
             <div class="form-group">
                 <label for="last-name">Прізвище</label>
-                <input type="text" id="last-name" name="last-name">
+                <input type="text" id="last-name" name="last-name" required>
             </div>
             <div class="form-group">
                 <label for="middle-name">По батькові</label>
-                <input type="text" id="middle-name" name="middle-name">
+                <input type="text" id="middle-name" name="middle-name" required>
             </div>
             <div class="form-group">
                 <label for="phone">Телефон</label>
-                <input type="tel" id="phone" name="phone">
+                <input type="tel" id="phone" name="phone" required>
             </div>
             <div class="form-group">
                 <label for="email">Електрона пошта</label>
-                <input type="email" id="email" name="email">
+                <input type="email" id="email" name="email" required>
             </div>
             <div class="form-group">
                 <label for="city">Місто</label>
-                <select id="city" name="city">
+                <select id="city" name="city" required>
                     <option value="Kyiv">Київ</option>
                     <option value="Kharkiv">Харків</option>
                     <option value="Lviv">Одеса</option>
@@ -58,7 +59,7 @@
             </div>
             <div class="form-group">
                 <label for="delivery">Доставка</label>
-                <select id="delivery" name="delivery">
+                <select id="delivery" name="delivery" required>
                     <option value="pickup">Самовивіз</option>
                     <option value="courier">Кур'єр на вашу адресу</option>
                     <option value="post">Самовивіз з Нової Пошти</option>
@@ -69,10 +70,8 @@
             </div>
         </div>
     </div>
-    
-   
-    
-    
+</form>
+     
     <script src="../js/script.form.js"> </script>
     
 </body>
