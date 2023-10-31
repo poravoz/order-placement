@@ -33,7 +33,7 @@
     display: block;
     margin-bottom: 12px;
  }
- .add-to-cart {
+ .add-to-cart, .go-to-cart  {
     text-decoration: none;
     display: inline-block;
     padding: 0 12px;
@@ -44,10 +44,13 @@
     line-height: 28px;
     transition: .3s ease-in;
  }
- .product-item:hover .add-to-cart  {
+ .product-item:hover .add-to-cart:hover, .go-to-cart:hover  {
     background: #fc5a5a;
  }
 
+ .go-to-cart {
+    display: none;
+}
 
 .basket {
     position: fixed;
