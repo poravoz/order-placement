@@ -1,5 +1,5 @@
-export class OrderPlacement {
-    id: string;
+export class CreateOrderPlacementDto {
+    id: number;
     name: string;
     surname: string;
     phone: string;
