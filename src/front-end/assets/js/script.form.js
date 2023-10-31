@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+window.onload = function() {
     var cartItemsDiv = document.getElementById('cart-items');
     var cartProduct = localStorage.getItem('cartProduct');
     var formContainer = document.querySelector('.form-container');
@@ -66,4 +66,4 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
     });
-});
+};
