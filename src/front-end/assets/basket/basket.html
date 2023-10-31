@@ -4,15 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../images/icon.svg">
+    <link rel="stylesheet" href="../css/style.form.css">
 
     <title>ROZETKA</title>
 </head>
 <body>
     <div class="cart-content">
         <h2>Кошик</h2>
-        <div id="cart-items"></div>
-        <button id="clear-cart">Очистить</button>
+        <div class="cart-items" id="cart-items"></div>
+        <button class="clear-cart" id="clear-cart">Очистити</button>
+
+        <div class="form-container">
+            <h2>Оформити замовлення</h2>
+            <div class="form-group">
+                <label for="first-name">Ім'я</label>
+                <input type="text" id="first-name" name="first-name">
+            </div>
+            <div class="form-group">
+                <label for="last-name">Прізвище</label>
+                <input type="text" id="last-name" name="last-name">
+            </div>
+            <div class="form-group">
+                <label for="middle-name">По батькові</label>
+                <input type="text" id="middle-name" name="middle-name">
+            </div>
+            <div class="form-group">
+                <label for="phone">Телефон</label>
+                <input type="tel" id="phone" name="phone">
+            </div>
+            <div class="form-group">
+                <label for="email">Електрона пошта</label>
+                <input type="email" id="email" name="email">
+            </div>
+            <div class="form-group">
+                <label for="city">Місто</label>
+                <select id="city" name="city">
+                    <option value="Kyiv">Київ</option>
+                    <option value="Kharkiv">Харків</option>
+                    <option value="Lviv">Одеса</option>
+                    <option value="Lviv">Дніпро</option>
+                    <option value="Lviv">Запоріжжя</option>
+                    <option value="Lviv">Львів</option>
+                    <option value="Lviv">Миколаїв</option>
+                    <option value="Lviv">Вінниця</option>
+                    <option value="Lviv">Херсон</option>
+                    <option value="Lviv">Полтава</option>
+                    <option value="Lviv">Черкаси</option>
+                    <option value="Lviv">Хмельницький</option>
+                    <option value="Lviv">Чернігів</option>
+                    <option value="Lviv">ІваноФранківськ</option>
+                    <option value="Lviv">Луцьк</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="delivery">Доставка</label>
+                <select id="delivery" name="delivery">
+                    <option value="pickup">Самовивіз</option>
+                    <option value="courier">Кур'єр на вашу адресу</option>
+                    <option value="post">Самовивіз з Нової Пошти</option>
+                </select>
+            </div>
+            <div class="form-button">
+                <button type="submit">Замовити</button>
+            </div>
+        </div>
     </div>
+    
+   
     
     
     <script src="../js/script.form.js"> </script>
