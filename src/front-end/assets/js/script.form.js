@@ -98,6 +98,8 @@ window.onload = function() {
            emailInput.value = '';
            document.getElementById('city').value = '';
            document.getElementById('delivery').value = '';
+
+           window.location.href = '../../index.html';
        })
        .catch(error => {
            console.error('Помилка:', error);
