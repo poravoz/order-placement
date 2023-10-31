@@ -4,6 +4,10 @@ body {
     margin: 0;
 }
 
+a {
+    text-decoration: none;
+}
+
 .cart-content {
     max-width: 800px;
     margin: 50px auto;
@@ -64,9 +68,13 @@ h2 {
     cursor: pointer;
 }
 
+.buttons-container {
+    text-align: center; 
+}
+
 .clear-cart {
-    display: block;
-    margin: 0 auto;
+    display: inline-block;
+    margin: 0 10px;
     padding: 10px 20px;
     background-color: #ff5733;
     color: #fff;
@@ -74,8 +82,14 @@ h2 {
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.continue-shopping {
+    text-decoration: none; 
 }
 
 .clear-cart:hover {
     background-color: #d04133;
 }
+
