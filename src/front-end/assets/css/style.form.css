@@ -89,7 +89,11 @@ h2 {
     text-decoration: none; 
 }
 
-.clear-cart:hover {
-    background-color: #d04133;
+.clear-cart:hover, .order:hover {
+   opacity: 0.8;
+}
+
+.clear-cart:active, .order:active, .continue-shopping:active {
+    opacity: 0.9;
 }
 
