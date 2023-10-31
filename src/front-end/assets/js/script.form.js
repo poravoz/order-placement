@@ -25,7 +25,9 @@ window.onload = function() {
         formContainer.style.display = 'none';
     };
 
-    submitButton.onclick = function() {
+    submitButton.onclick = function(event) {
+        event.preventDefault();
+
         // Перевірка імені
         var firstName = firstNameInput.value;
         if (!/^[а-яА-Яa-zA-Z]+$/.test(firstName) || firstName.length < 2) {
@@ -61,43 +63,44 @@ window.onload = function() {
             return;
         }
 
-        // Отримати дані з форми
-        var city = document.getElementById('city').value;
-        var delivery = document.getElementById('delivery').value;
+       var city = document.getElementById('city').value;
+       var delivery = document.getElementById('delivery').value;
 
-        // Створення об'єкта з даними
-        var data = {
-            name: firstName,
-            surname: lastName,
-            middleName: middleName,
-            phone: phone,
-            email: email,
-            city: city,
-            delivery: delivery
-        };
+       var data = {
+           name: firstNameInput.value,
+           surname: lastNameInput.value,
+           middleName: middleNameInput.value,
+           phone: phoneInput.value,
+           email: emailInput.value,
+           city: city,
+           delivery: delivery
+       };
 
-        // Відправка POST запиту
-        fetch('http://localhost:3000/order-placement/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Успішно надіслано:', data);
-            // Очистити форму після відправки, якщо потрібно
-            firstNameInput.value = '';
-            lastNameInput.value = '';
-            middleNameInput.value = '';
-            phoneInput.value = '';
-            emailInput.value = '';
-            document.getElementById('city').value = 'Kyiv';
-            document.getElementById('delivery').value = 'pickup';
-        })
-        .catch(error => {
-            console.error('Помилка:', error);
-        });
-    };
+       fetch('http://localhost:3000/order-placement/', {
+           method: 'POST',
+           headers: {
+               'Content-Type': 'application/json'
+           },
+           body: JSON.stringify(data)
+       })
+       .then(response => response.json())
+       .then(data => {
+           console.log('Успішно надіслано:', data);
+
+           localStorage.removeItem('cartProduct');
+           cartItemsDiv.innerHTML = '<p>Кошик пустий</p>';
+           formContainer.style.display = 'none';
+
+           firstNameInput.value = '';
+           lastNameInput.value = '';
+           middleNameInput.value = '';
+           phoneInput.value = '';
+           emailInput.value = '';
+           document.getElementById('city').value = '';
+           document.getElementById('delivery').value = '';
+       })
+       .catch(error => {
+           console.error('Помилка:', error);
+       });
+   };
 };
