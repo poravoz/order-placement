@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import OrderPlacementService  from './order-placement.service';
 import { CreateOrderPlacementDto } from './dto/create-order-placement.dto';
 import { UpdateOrderPlacementDto } from './dto/update-order-placement.dto';
@@ -24,9 +24,9 @@ export default class OrderPlacementController {
         return this.orderPlacementService.createOrderPlacement(orderPlacement);
     }
 
-    @Put(':id')
-    async replaceOrderPlacement(@Param('id') id: string, @Body() orderPlacement: UpdateOrderPlacementDto) {
-        return this.orderPlacementService.replaceOrderPlacement(id, orderPlacement);
+    @Patch(':id')
+    async updateOrderPlacement(@Param('id') id: string, @Body() orderPlacement: UpdateOrderPlacementDto) {
+        return this.orderPlacementService.updateOrderPlacement(id, orderPlacement);
     }
 
     @Delete(':id')

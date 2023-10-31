@@ -34,7 +34,7 @@ export default class OrderPlacementService {
         return newOrderPlacement;
     }
 
-    async replaceOrderPlacement(id: string, orderPlacement: UpdateOrderPlacementDto) {
+    async updateOrderPlacement(id: string, orderPlacement: UpdateOrderPlacementDto) {
         await this.orderPlacementsRepository.update(id, orderPlacement);
         const updateOrderPlacement = await this.orderPlacementsRepository.findOne({where: {id}});
         if(updateOrderPlacement) {
