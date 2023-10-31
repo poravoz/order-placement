@@ -12,22 +12,20 @@ window.onload = function() {
 
     if (cartProduct) {
         cartItemsDiv.innerHTML = '<h3>Товар у кошику:</h3><p>' + cartProduct + '</p>';
-        formContainer.style.display = 'block'; 
+        formContainer.style.display = 'block';
     } else {
         cartItemsDiv.innerHTML = '<p>Кошик пустий</p>';
-        formContainer.style.display = 'none'; 
+        formContainer.style.display = 'none';
     }
 
-    clearCartButton.addEventListener('click', function() {
+    clearCartButton.onclick = function() {
         localStorage.removeItem('cartProduct');
         cartItemsDiv.innerHTML = '<p>Кошик пустий</p>';
         parent.postMessage('clearCart', '*');
-        formContainer.style.display = 'none'; 
-    });
+        formContainer.style.display = 'none';
+    };
 
-    submitButton.addEventListener('click', function(event) {
-        event.preventDefault();
-
+    submitButton.onclick = function() {
         // Перевірка імені
         var firstName = firstNameInput.value;
         if (!/^[а-яА-Яa-zA-Z]+$/.test(firstName) || firstName.length < 2) {
@@ -101,5 +99,5 @@ window.onload = function() {
         .catch(error => {
             console.error('Помилка:', error);
         });
-    });
+    };
 };
