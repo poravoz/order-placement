@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var clearCartButton = document.getElementById('clear-cart');
 
     if (cartProduct) {
-        cartItemsDiv.innerHTML = '<h3>Товар в кошику:</h3><p>' + cartProduct + '</p>';
+        cartItemsDiv.innerHTML = '<h3>Товар у кошику:</h3><p>' + cartProduct + '</p>';
     } else {
         cartItemsDiv.innerHTML = '<p>Кошик пустий</p>';
         formContainer.style.display = 'none'; 
