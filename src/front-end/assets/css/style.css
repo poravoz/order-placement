@@ -62,6 +62,21 @@
     height: 100%;
 }
 
+.marker {
+    display: none; 
+    background-color: #ff5733; 
+    color: #fff; 
+    font-size: 12px; 
+    border-radius: 50%; 
+    width: 20px; 
+    height: 20px; 
+    text-align: center; 
+    line-height: 20px;
+    position: absolute; 
+    top: -5px; 
+    right: -5px; 
+}
+
 .basket:hover {
     opacity: 0.6;
 }
