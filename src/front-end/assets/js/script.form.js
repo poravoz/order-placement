@@ -26,11 +26,12 @@ window.onload = function() {
     });
 
     submitButton.addEventListener('click', function(event) {
+        event.preventDefault();
+
         // Перевірка імені
         var firstName = firstNameInput.value;
         if (!/^[а-яА-Яa-zA-Z]+$/.test(firstName) || firstName.length < 2) {
             alert('Ім\'я повинно складатися як мінімум з двох літер і не містити цифри');
-            event.preventDefault();
             return;
         }
 
@@ -38,7 +39,6 @@ window.onload = function() {
         var lastName = lastNameInput.value;
         if (!/^[а-яА-Яa-zA-Z]+$/.test(lastName) || lastName.length < 2) {
             alert('Прізвище повинно складатися як мінімум з двох літер і не містити цифри');
-            event.preventDefault();
             return;
         }
 
@@ -46,7 +46,6 @@ window.onload = function() {
         var middleName = middleNameInput.value;
         if (!/^[а-яА-Яa-zA-Z]+$/.test(middleName) || middleName.length < 2) {
             alert('По батькові повинно складатися як мінімум з двох літер і не містити цифри');
-            event.preventDefault();
             return;
         }
 
@@ -54,7 +53,6 @@ window.onload = function() {
         var phone = phoneInput.value;
         if (!/^\d{10}$/.test(phone)) {
             alert('Телефон повинен містити 10 цифр');
-            event.preventDefault();
             return;
         }
 
@@ -62,8 +60,46 @@ window.onload = function() {
         var email = emailInput.value;
         if (!/^[\w-]+(\.[\w-]+)*@gmail\.com$/.test(email)) {
             alert('Електронна пошта повинна бути у форматі example@gmail.com');
-            event.preventDefault();
             return;
         }
+
+        // Отримати дані з форми
+        var city = document.getElementById('city').value;
+        var delivery = document.getElementById('delivery').value;
+
+        // Створення об'єкта з даними
+        var data = {
+            firstName: firstName,
+            lastName: lastName,
+            middleName: middleName,
+            phone: phone,
+            email: email,
+            city: city,
+            delivery: delivery
+        };
+
+        // Відправка POST запиту
+        fetch('http://localhost:3000/order-placement/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Успішно надіслано:', data);
+            // Очистити форму після відправки, якщо потрібно
+            firstNameInput.value = '';
+            lastNameInput.value = '';
+            middleNameInput.value = '';
+            phoneInput.value = '';
+            emailInput.value = '';
+            document.getElementById('city').value = 'Kyiv';
+            document.getElementById('delivery').value = 'pickup';
+        })
+        .catch(error => {
+            console.error('Помилка:', error);
+        });
     });
 };

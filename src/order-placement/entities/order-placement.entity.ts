@@ -13,6 +13,9 @@ class OrderPlacementEntity {
     surname: string;
 
     @Column()
+    middleName: string;
+
+    @Column()
     phone: string;
 
     @Column()
