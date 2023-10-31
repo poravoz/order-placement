@@ -4,6 +4,7 @@ import { CreateOrderPlacementDto } from './dto/create-order-placement.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import OrderPlacementEntity from './entities/order-placement.entity';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export default class OrderPlacementService {
@@ -16,7 +17,7 @@ export default class OrderPlacementService {
         return await this.orderPlacementsRepository.find();
     }
 
-    async getOrderPlacementById(id: number) {
+    async getOrderPlacementById(id: string) {
         const orderPlacement = await this.orderPlacementsRepository.findOne({where: {id}});
         if(orderPlacement) {
             return orderPlacement;
@@ -25,12 +26,15 @@ export default class OrderPlacementService {
     }
 
     async createOrderPlacement(orderPlacement: CreateOrderPlacementDto) {
-        const newOrderPlacement = await this.orderPlacementsRepository.create(orderPlacement) 
+        const newOrderPlacement = await this.orderPlacementsRepository.create({
+            id: uuidv4(),
+            ...orderPlacement,
+        }) 
         await this.orderPlacementsRepository.save(newOrderPlacement);
         return newOrderPlacement;
     }
 
-    async replaceOrderPlacement(id: number, orderPlacement: UpdateOrderPlacementDto) {
+    async replaceOrderPlacement(id: string, orderPlacement: UpdateOrderPlacementDto) {
         await this.orderPlacementsRepository.update(id, orderPlacement);
         const updateOrderPlacement = await this.orderPlacementsRepository.findOne({where: {id}});
         if(updateOrderPlacement) {
@@ -39,7 +43,7 @@ export default class OrderPlacementService {
         throw new HttpException('OrderPlacement not found', HttpStatus.NOT_FOUND);
     }
 
-    async deleteOrderPlacement(id: number) {
+    async deleteOrderPlacement(id: string) {
         const deleteOrderPlacement = await this.orderPlacementsRepository.delete(id);
         if(!deleteOrderPlacement) {
             throw new HttpException('OrderPlacement not found', HttpStatus.NOT_FOUND);

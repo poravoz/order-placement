@@ -15,8 +15,8 @@ export default class OrderPlacementController {
     }
 
     @Get(':id')
-    getOrderPlacementById(@Param('id') id: number) {
-        return this.orderPlacementService.getOrderPlacementById(Number(id));
+    getOrderPlacementById(@Param('id') id: string) {
+        return this.orderPlacementService.getOrderPlacementById(id);
     }
 
     @Post()
@@ -25,12 +25,13 @@ export default class OrderPlacementController {
     }
 
     @Put(':id')
-    async replaceOrderPlacement(@Param('id') id: number, @Body() orderPlacement: UpdateOrderPlacementDto) {
-        return this.orderPlacementService.replaceOrderPlacement(Number(id), orderPlacement);
+    async replaceOrderPlacement(@Param('id') id: string, @Body() orderPlacement: UpdateOrderPlacementDto) {
+        return this.orderPlacementService.replaceOrderPlacement(id, orderPlacement);
     }
 
     @Delete(':id')
-    async deleteOrderPlacement(@Param('id') id: number) {
-        this.orderPlacementService.deleteOrderPlacement(Number(id));
+    async deleteOrderPlacement(@Param('id') id: string) {
+        this.orderPlacementService.deleteOrderPlacement(id);
+        return "Order Placement is Deleted";
     }
 }
