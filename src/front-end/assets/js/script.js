@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     var addToCartButton = document.getElementById('add-to-cart');
-    var clearCartButton = document.getElementById('clear-cart');
+    var cartMarker = document.getElementById('cart-marker');
 
     addToCartButton.addEventListener('click', function() {
         var productName = document.querySelector('.product-list h3').textContent;
@@ -8,17 +8,12 @@ document.addEventListener('DOMContentLoaded', function() {
         updateCartMarker();
     });
 
-    clearCartButton.addEventListener('click', function() {
-        localStorage.removeItem('cartProduct');
-        updateCartMarker();
-    });
-
     function updateCartMarker() {
-        var cartMarker = localStorage.getItem('cartProduct');
-        if (cartMarker) {
-            document.getElementById('cart-marker').style.display = 'inline-block';
+        var cartProduct = localStorage.getItem('cartProduct');
+        if (cartProduct) {
+            cartMarker.style.display = 'inline-block';
         } else {
-            document.getElementById('cart-marker').style.display = 'none';
+            cartMarker.style.display = 'none';
         }
     }
 

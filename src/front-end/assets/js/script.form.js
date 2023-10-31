@@ -2,14 +2,15 @@ document.addEventListener('DOMContentLoaded', function() {
     var cartItemsDiv = document.getElementById('cart-items');
     var cartProduct = localStorage.getItem('cartProduct');
     var formContainer = document.querySelector('.form-container');
+    var clearCartButton = document.getElementById('clear-cart');
 
     if (cartProduct) {
         cartItemsDiv.innerHTML = '<h3>Товар в кошику:</h3><p>' + cartProduct + '</p>';
     } else {
         cartItemsDiv.innerHTML = '<p>Кошик пустий</p>';
+        formContainer.style.display = 'none'; 
     }
 
-    var clearCartButton = document.getElementById('clear-cart');
     clearCartButton.addEventListener('click', function() {
         localStorage.removeItem('cartProduct');
         cartItemsDiv.innerHTML = '<p>Кошик пустий</p>';
@@ -17,3 +18,5 @@ document.addEventListener('DOMContentLoaded', function() {
         formContainer.style.display = 'none'; 
     });
 });
+
+
