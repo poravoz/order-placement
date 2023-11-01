@@ -87,4 +87,13 @@
 .basket:active {
     opacity: 0.8;
 }
+
+.order a {
+   position: fixed;
+   text-decoration: none;
+   color: #000;
+   font-size: 18px;
+   top: 25px;
+   right: 60px;
+}
     
