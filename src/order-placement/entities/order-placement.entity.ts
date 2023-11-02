@@ -7,6 +7,9 @@ class OrderPlacementEntity {
     id: string;
 
     @Column()
+    name_product: string;
+    
+    @Column()
     name: string;
 
     @Column()

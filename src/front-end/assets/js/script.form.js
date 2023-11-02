@@ -65,8 +65,10 @@ window.onload = function() {
 
        var city = document.getElementById('city').value;
        var delivery = document.getElementById('delivery').value;
+       localStorage.setItem('cartProduct', 'Значение продукта');
 
        var data = {
+           name_product: cartProduct,
            name: firstNameInput.value,
            surname: lastNameInput.value,
            middleName: middleNameInput.value,

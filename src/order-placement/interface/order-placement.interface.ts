@@ -1,5 +1,6 @@
 export interface OrderPlacement {
     id: string;
+    name_product: string;
     name: string;
     middleName: string;
     surname: string;
